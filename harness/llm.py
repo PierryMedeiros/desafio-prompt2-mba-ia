@@ -43,7 +43,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 PROVEDORES = ("openai", "google")
 PAPEIS = {"system": SystemMessage, "user": HumanMessage, "assistant": AIMessage}
 
-MAX_TENTATIVAS = 5
+MAX_TENTATIVAS = 6
 ESPERA_INICIAL_S = 2.0
 TIMEOUT_S = 300
 

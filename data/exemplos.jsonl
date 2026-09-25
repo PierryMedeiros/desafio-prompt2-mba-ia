@@ -13,7 +13,7 @@
 {"id": "E13", "texto": "Seria ótimo se o boleto que mando pros meus clientes pudesse ter o logo do salão no topo. Fica mais profissional.", "categoria": "sugestao"}
 {"id": "E14", "texto": "Toda NFS-e que tento transmitir hoje volta com \"Erro inesperado ao comunicar com a prefeitura (cód. 502)\". Até semana passada emitia normal, nada mudou no cadastro.", "categoria": "bug"}
 {"id": "E15", "texto": "Tenho uns 300 clientes numa planilha assim:\nnome;cpf_cnpj;email;telefone\nAna Souza;123.456.789-00;ana@exemplo.com;11999990000\nTem como importar tudo de uma vez em vez de cadastrar um por um?", "categoria": "duvida_de_uso"}
-{"id": "E16", "texto": "Emito pelo sistema os boletos dos meus alunos com vencimento dia 10, mas o PDF gerado sai com vencimento dia 01. Aconteceu com a turma toda de outubro. É defeito no gerador de boletos da plataforma, a minha assinatura está em dia.", "categoria": "bug"}
+{"id": "E16", "texto": "Emito pelo sistema os boletos dos meus alunos com vencimento dia 10, mas o PDF gerado sai com vencimento dia 01. Aconteceu com a turma toda de outubro.", "categoria": "bug"}
 {"id": "E17", "texto": "Vocês pensam em ter modo escuro no app? Uso muito à noite fechando o caixa.", "categoria": "sugestao"}
 {"id": "E18", "texto": "Quero cancelar meu plano hoje. E a mensalidade que caiu ontem no cartão, já que não vou usar o mês, quero o estorno.", "categoria": "cancelamento"}
 {"id": "E19", "texto": "Sugestão: incluir SMS como canal da régua de cobrança. Muitos pacientes mais velhos da clínica não usam WhatsApp.", "categoria": "sugestao"}

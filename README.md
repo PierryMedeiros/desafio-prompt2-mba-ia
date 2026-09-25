@@ -75,7 +75,7 @@ Tickets que quebram formatos ingênuos. Há textos com várias linhas, aspas, ba
 
 Lotes que voltam incompletos. Modelos pulam, repetem e reordenam itens, e isso piora quanto maior o lote. Pista: nunca aceite um lote sem conferir contra o que foi enviado, e lembre que reenvios também contam no teto de chamadas.
 
-Tickets com mais de um assunto. A precedência em `data/categorias.yaml` decide, e a média macro cobra caro de um prompt enxuto que esquece a regra. Pista: o baseline acerta esses casos; veja o que ele diz ao modelo.
+Tickets com mais de um assunto ou vocabulário enganoso. A precedência em `data/categorias.yaml` decide os primeiros, e numa empresa de cobrança nem todo ticket que fala de boleto é `cobranca`. A média macro cobra caro de um prompt enxuto que esquece uma regra. Pista: o baseline acerta esses casos; veja o que ele diz ao modelo.
 
 ## Requisitos
 
