@@ -22,7 +22,8 @@ Uso:
     )
 
 Configuração lida do .env (veja .env.example): LLM_PROVIDER, LLM_MODEL,
-OPENAI_API_KEY ou GOOGLE_API_KEY e, opcionalmente, LLM_RPM.
+OPENAI_API_KEY ou GOOGLE_API_KEY e, opcionalmente, LLM_RPM. O cliente não
+envia temperatura: cada modelo usa o seu padrão.
 
 O cliente é thread-safe: você pode fazer chamadas em paralelo a partir de
 várias threads usando a mesma instância.
@@ -102,12 +103,13 @@ class ClienteLLM:
 
         # As retentativas são feitas por este cliente, não pelo SDK do provedor,
         # para que nenhuma tentativa aconteça fora do controle do throttle.
+        # Nenhuma temperatura é enviada: cada modelo usa o seu padrão (vários modelos
+        # recentes não aceitam temperatura diferente da padrão).
         if self.provider == "openai":
             from langchain_openai import ChatOpenAI
 
             self._modelo = ChatOpenAI(
                 model=self.model,
-                temperature=0,
                 api_key=chave,
                 max_retries=0,
                 timeout=TIMEOUT_S,
@@ -117,7 +119,6 @@ class ClienteLLM:
 
             self._modelo = ChatGoogleGenerativeAI(
                 model=self.model,
-                temperature=0,
                 google_api_key=chave,
                 max_retries=0,
                 timeout=TIMEOUT_S,

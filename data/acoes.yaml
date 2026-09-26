@@ -1,0 +1,17 @@
+# As 16 ações possíveis de um ticket. O que cada uma significa, e quando se aplica, está em data/manual.md.
+- descartar
+- suporte_padrao
+- escalar_seguranca
+- escalar_engenharia
+- oferta_retencao
+- cancelamento_direto
+- reembolso_automatico
+- reembolso_com_analise
+- negar_reembolso
+- nf_cancelamento_orientado
+- nf_carta_correcao
+- fiscal_analise
+- oferta_upgrade
+- ajuste_plano
+- solicitar_documentos
+- encaminhar_dpo
