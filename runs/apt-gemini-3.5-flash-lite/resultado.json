@@ -1,0 +1,9 @@
+{
+  "provider": "google",
+  "model": "gemini-3.5-flash-lite",
+  "unidade": 45477,
+  "acuracia": 0.6667,
+  "minimo": 0.9,
+  "aprovado": false,
+  "timestamp": "2026-09-28T18:21:47Z"
+}
