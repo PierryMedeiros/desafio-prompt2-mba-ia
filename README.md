@@ -19,7 +19,7 @@ Entregar, em um fork público do repositório base:
 
 https://github.com/devfullcycle/REPO-A-DEFINIR
 
-Você precisa de Python 3.10+ e de uma chave de API da OpenAI (https://platform.openai.com/api-keys) ou do Google Gemini (https://aistudio.google.com/app/apikey). O desafio não fixa modelo: qualquer um que passe no teste de aptidão serve. Com modelos pequenos, o desafio inteiro custa centavos de dólar. Planos gratuitos costumam ter cotas baixas, e cada chamada com o manual inteiro tem dezenas de milhares de tokens: confira os limites do seu antes de escolher.
+Você precisa de Python 3.10+ e de uma chave de API da OpenAI (https://platform.openai.com/api-keys) ou do Google Gemini (https://aistudio.google.com/app/apikey). O desafio não fixa modelo: qualquer um que passe no teste de aptidão serve. Conforme o modelo, o desafio inteiro custa de centavos a pouco mais de um dólar. Planos gratuitos costumam ter cotas baixas, e cada chamada com o manual inteiro tem dezenas de milhares de tokens: confira os limites do seu antes de escolher.
 
 ```
 python3 -m venv venv
@@ -36,7 +36,7 @@ Os dados:
 
 - `data/manual.md`: o Manual de Atendimento. A regra de negócio inteira está aqui e em nenhum outro lugar.
 - `data/acoes.yaml`: os nomes das 16 ações possíveis.
-- `data/dev/tickets.jsonl`: os 200 tickets de desenvolvimento, com o texto e os metadados do CRM do cliente (plano, ciclo, datas e histórico).
+- `data/dev/tickets.jsonl`: os 200 tickets de desenvolvimento, com o texto e os metadados do CRM do cliente (plano, ciclo, data de adesão, data de abertura, reembolsos nos últimos 12 meses, usuários ativos e, nos pedidos de reembolso, a cobrança em questão).
 - `data/dev/gabarito.jsonl`: a ação correta de cada ticket, a regra que a decidiu e a seção do manual onde ela está. É a régua do checker e o seu instrumento de diagnóstico, não insumo do pipeline.
 - `data/aptidao/`: 30 tickets e o gabarito do teste de aptidão.
 
@@ -98,7 +98,7 @@ Escolha o modelo e prove que ele serve:
 python -m harness.aptidao
 ```
 
-O teste manda o manual inteiro e 30 tickets ao seu modelo e mede se ele acerta pelo menos 90% quando tem todas as regras na frente. Se ele não passa nem assim, nenhuma estratégia de contexto vai salvá-lo. O teste também mede a unidade de custo do desafio: 1 manual equivale aos tokens de entrada de uma chamada que envia só o manual, no seu modelo. Versione `runs/aptidao/`.
+O teste manda o manual inteiro e 30 tickets ao seu modelo e mede se ele acerta pelo menos 90% quando tem todas as regras na frente. Se ele não passa nem assim, nenhuma estratégia de contexto vai salvá-lo. Nem todo modelo pequeno passa: nos nossos testes, vários ficaram entre 60% e 80%. Teste candidatos em pastas próprias (ex.: `python -m harness.aptidao --saida runs/aptidao-candidato1`); o checker lê `runs/aptidao`, então é lá que fica a aptidão do modelo escolhido. O teste também mede a unidade de custo do desafio: 1 manual equivale aos tokens de entrada de uma chamada que envia só o manual, no seu modelo. Versione `runs/aptidao/`.
 
 Nos modelos de raciocínio, os tokens que eles gastam pensando entram na conta, e o curso mostrou ao comparar modelos que não são poucos. Escolher o modelo já é a primeira decisão de custo.
 
@@ -147,7 +147,7 @@ Quebrar qualquer uma delas descaracteriza a entrega:
 - Cada chamada contém tickets de uma única onda.
 - O texto de cada ticket também vai integral ao modelo.
 - O pipeline não lê o gabarito.
-- Quem decide a ação é o modelo. O código pode traduzir o formato da resposta e calcular fatos neutros a partir dos metadados (ex.: dias entre duas datas), mas não compara com limites do manual nem escolhe a ação. Para um ticket que o modelo não conseguiu classificar, um valor padrão fixo é permitido.
+- Quem decide a ação é o modelo. O código pode traduzir o formato da resposta e calcular fatos neutros: contas de calendário (dias corridos, meses completos) entre datas dos metadados ou citadas no texto. Ele não decide qual data vale para uma regra, não compara com limites do manual e não escolhe a ação. Para um ticket que o modelo não conseguiu classificar, um valor padrão fixo é permitido.
 
 ## Fora de escopo
 
@@ -222,6 +222,8 @@ Repositório público no GitHub, fork do repositório base, com tudo na branch `
 
 Rode a aptidão antes de qualquer outra coisa: são quatro chamadas e elas já dizem se o modelo serve e quanto vale um manual no seu bolso. O baseline não é obrigatório, mas rodá-lo uma vez e passar o checker nele mostra o tamanho do problema em números. Chamadas com o manual inteiro são grandes; se o provedor reclamar de limite por minuto, preencha `LLM_RPM` no `.env` e rode em sequência.
 
-Como o cliente recusa pasta com log, faça seus experimentos em pastas novas (ex.: `runs/exp-resumo`) e gere `runs/dev` com o código que você vai entregar. Antes de entregar, rode o pipeline apontando `--manual` para uma cópia do manual em que você mudou uma regra: se a sua saída não mudar junto, o avaliador vai perceber antes de você.
+Como o cliente recusa pasta com log, faça seus experimentos em pastas novas (ex.: `runs/exp-resumo`) e gere `runs/dev` com o código que você vai entregar. Antes de entregar, rode o pipeline apontando `--manual` para uma cópia do manual em que você mudou uma regra: se a sua saída não mudar junto, o avaliador vai perceber antes de você. Use o arquivo de tickets inteiro (num subconjunto, o custo fixo da preparação pesa mais e o checker reprova no custo) e, como não existe gabarito para o seu manual alterado, confira à mão os tickets que a mudança deveria afetar.
+
+O contexto que o modelo gera muda de tamanho a cada execução, e o custo e o F1 mudam junto. Rode a configuração final mais de uma vez e deixe folga nos dois limites: o avaliador faz a própria execução, com outro manual e outros tickets.
 
 Na dúvida, siga o erro: o checker diz a regra e a seção, e o `log.jsonl` mostra o contexto que o seu pipeline gerou. Um resumo que parece ótimo e um contexto que funciona são indistinguíveis até você medir.
