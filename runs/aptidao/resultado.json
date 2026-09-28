@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5-mini",
+  "unidade": 42775,
+  "acuracia": 1.0,
+  "minimo": 0.9,
+  "aprovado": true,
+  "timestamp": "2026-09-28T18:24:05Z"
+}
