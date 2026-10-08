@@ -1,6 +1,6 @@
 """Cliente único de acesso ao modelo de linguagem.
 
-NÃO ALTERE ESTE ARQUIVO. Ele faz parte da régua do desafio: o checker confia no
+NÃO ALTERE ESTE ARQUIVO. Ele faz parte da régua do desafio: o verificador confia no
 log que ele grava para contar chamadas e tokens.
 
 Toda chamada ao modelo feita pelo seu pipeline precisa passar por um ClienteLLM.
@@ -10,7 +10,7 @@ informados pela própria API do provedor.
 
 Uso:
 
-    from harness.llm import ClienteLLM
+    from ferramentas.llm import ClienteLLM
 
     llm = ClienteLLM("runs/run-1")
     resposta = llm.chamar(

@@ -1,10 +1,10 @@
-"""Checker do desafio "O manual não cabe".
+"""Verificador do desafio "O manual não cabe".
 
 NÃO ALTERE ESTE ARQUIVO.
 
 Uso (a partir da raiz do repositório):
 
-    python -m harness.check <pasta>
+    python -m ferramentas.verificar <pasta>
         [--manual data/manual.md]
         [--tickets data/dev/tickets.jsonl]
         [--gabarito data/dev/gabarito.jsonl]
@@ -27,7 +27,7 @@ from pathlib import Path
 
 import yaml
 
-from harness.config import F1_MINIMO, ORCAMENTO_MANUAIS, TAMANHO_ONDA
+from ferramentas.config import F1_MINIMO, ORCAMENTO_MANUAIS, TAMANHO_ONDA
 
 RAIZ = Path(__file__).resolve().parent.parent
 ARQ_ACOES = RAIZ / "data" / "acoes.yaml"
@@ -210,7 +210,7 @@ def verificar(args) -> bool:
         except json.JSONDecodeError:
             aptidao = None
     if aptidao is None:
-        registrar("Aptidão", False, f"{arq_aptidao} não encontrado ou ilegível; rode python -m harness.aptidao")
+        registrar("Aptidão", False, f"{arq_aptidao} não encontrado ou ilegível; rode python -m ferramentas.aptidao")
         return False
     detalhe = (f"{aptidao.get('provider')} / {aptidao.get('model')}, unidade {aptidao.get('unidade')} tokens, "
                f"acurácia {float(aptidao.get('acuracia', 0)):.2f}")
@@ -316,7 +316,7 @@ def verificar(args) -> bool:
 
 
 def main(argv: list[str]) -> int:
-    parser = argparse.ArgumentParser(description="Checker do desafio O manual não cabe.")
+    parser = argparse.ArgumentParser(description="Verificador do desafio O manual não cabe.")
     parser.add_argument("pasta", help="pasta da execução (com log.jsonl e saida.jsonl)")
     parser.add_argument("--manual", default="data/manual.md")
     parser.add_argument("--tickets", default="data/dev/tickets.jsonl")

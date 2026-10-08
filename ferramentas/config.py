@@ -1,4 +1,4 @@
-"""Limites do desafio "O manual não cabe", lidos por harness/aptidao.py e harness/check.py.
+"""Limites do desafio "O manual não cabe", lidos por ferramentas/aptidao.py e ferramentas/verificar.py.
 
 Valores calibrados com soluções de referência. Não altere.
 """

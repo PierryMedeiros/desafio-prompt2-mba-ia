@@ -4,7 +4,7 @@ NÃO ALTERE ESTE ARQUIVO.
 
 Uso (a partir da raiz do repositório):
 
-    python -m harness.aptidao [--saida runs/aptidao]
+    python -m ferramentas.aptidao [--saida runs/aptidao]
 
 Faz quatro chamadas com o provedor e o modelo do .env:
 
@@ -27,8 +27,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from baseline.manual_inteiro import classificar_onda, ler_acoes, ler_tickets, ondas
-from harness.config import APTIDAO_MINIMA
-from harness.llm import ClienteLLM
+from ferramentas.config import APTIDAO_MINIMA
+from ferramentas.llm import ClienteLLM
 
 RAIZ = Path(__file__).resolve().parent.parent
 ARQ_MANUAL = RAIZ / "data" / "manual.md"

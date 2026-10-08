@@ -1,7 +1,7 @@
 """Classificador ingênuo: uma chamada por onda, com o manual inteiro em cada uma.
 
 NÃO ALTERE ESTE ARQUIVO. Ele é o ponto de partida do desafio e o exemplo da
-interface que o seu pipeline precisa ter. O teste de aptidão (harness/aptidao.py)
+interface que o seu pipeline precisa ter. O teste de aptidão (ferramentas/aptidao.py)
 reutiliza a função classificar_onda.
 
 Uso (a partir da raiz do repositório):
@@ -20,8 +20,8 @@ from pathlib import Path
 
 import yaml
 
-from harness.config import TAMANHO_ONDA
-from harness.llm import ClienteLLM
+from ferramentas.config import TAMANHO_ONDA
+from ferramentas.llm import ClienteLLM
 
 RAIZ = Path(__file__).resolve().parent.parent
 ARQ_ACOES = RAIZ / "data" / "acoes.yaml"
